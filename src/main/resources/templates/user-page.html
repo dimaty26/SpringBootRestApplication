@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="common-parts :: common-head">
+</head>
+<body>
+<header th:replace="common-parts :: common-header"></header>
+
+<div class="col-lg-12 text-center">
+    Welcome: <span th:utext="${#request.userPrincipal.name}"></span>
+
+    <br>
+
+    This is your Username:
+    <span th:utext="${username}"></span>
+    <br>
+    This is your Role(s):
+    <span th:text="${roleSet}"></span>
+    <br><br>
+</div>
+
+<div class="col-lg-12 text-center">
+    <table class="table table-striped" style="margin-left:150px; width: 1200px;">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${user}">
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="common-parts :: common-scripts"></div>
+</body>
+</html>
