@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.zmeevsky.springmvc</groupId>
+    <groupId>com.zmeevsky.springrest</groupId>
     <artifactId>SpringBootRestApplication</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -24,6 +24,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
