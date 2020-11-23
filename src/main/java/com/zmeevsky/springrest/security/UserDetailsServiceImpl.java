@@ -1,8 +1,8 @@
 package com.zmeevsky.springrest.security;
 
-import com.zmeevsky.springrest.dao.UserDao;
 import com.zmeevsky.springrest.entity.Role;
 import com.zmeevsky.springrest.entity.User;
+import com.zmeevsky.springrest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,12 +19,12 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(s);
+        User user = userService.findByUsername(s);
 
         if (user == null) {
             throw new UsernameNotFoundException("User " + s + " was not found.");

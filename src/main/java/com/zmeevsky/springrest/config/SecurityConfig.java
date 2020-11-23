@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -44,6 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/users/admin").access("hasRole('ROLE_ADMIN')")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(HttpMethod.POST, "/api/users").permitAll()
                 .and()
                 .formLogin()
                     .loginPage("/show-login-page")
@@ -55,7 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .clearAuthentication(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/show-login-page?logout")
-                .permitAll();
+                .permitAll()
+                .and()
+                .csrf().disable();
 
         http.userDetailsService(userDetailsService());
     }

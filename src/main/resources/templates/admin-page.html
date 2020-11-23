@@ -10,7 +10,7 @@
 
     <div class="row">
         <button type="button" class="btn btn-primary" data-action="addUser"
-                data-toggle="modal" data-target="#defaultModal">Add User
+                data-toggle="modal" data-target="#defaultModal" style="margin-top:10px;">Add User
         </button>
         <table id="userTable" class="table" style="margin-top:10px;">
             <thead>
@@ -20,7 +20,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -29,7 +29,7 @@
 </main>
 
 <div th:replace="fragments/modal :: defaultModal"></div>
-<div th:replace="fragments/form :: addUserForm"></div>
+<div th:replace="fragments/form :: userForm"></div>
 <div th:replace="fragments/table :: userTable"></div>
 <div th:replace="fragments/footer :: footer"></div>
 <div th:replace="fragments/footer :: scripts"></div>

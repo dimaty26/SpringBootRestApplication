@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="common-parts :: common-head">
+<head>
+    <th:block th:include="fragments/header :: head"></th:block>
     <meta charset="UTF-8">
     <title>Login Form</title>
 
@@ -20,7 +21,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="#">Login Page</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -76,10 +79,9 @@
                     </div>
 
                     <!-- Login/Submit Button -->
-                    <div style="margin-top: 10px; margin-left:-7px;" class="form-group">
-                        <div class="col-sm-6 controls">
-                            <button type="submit" class="btn btn-lg btn-outline-primary btn-block" style="
-                                    width: 334px;">Login</button>
+                    <div style="margin-top: 10px;" class="form-group">
+                        <div class="col-sm-12 controls">
+                            <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Login</button>
                         </div>
                     </div>
                 </form>

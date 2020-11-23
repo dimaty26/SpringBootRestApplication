@@ -1,7 +1,9 @@
 package com.zmeevsky.springrest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,6 +17,8 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -46,7 +50,7 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE})
+            cascade = {CascadeType.MERGE})
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

@@ -28,6 +28,10 @@ public class DataConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**", "/js/**", "/fonts/**")
                 .addResourceLocations("classpath:/static/css/", "classpath:/static/js/");
+
+        registry
+                .addResourceHandler("/webjars/**")
+                .addResourceLocations("/webjars/");
     }
 
     @Bean
