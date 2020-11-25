@@ -30,5 +30,4 @@ public class UserRestController {
 
         return ResponseEntity.ok(userService.getUser(user.getId()));
     }
-
 }

@@ -21,23 +21,22 @@ public class SaveUserRequest {
 
     @NotNull
     @NotBlank(message = "First Name is mandatory")
-    @Size(min = 2, max = 20, message = "May contain from {min} to {max} characters.")
+    @Size(min = 2, max = 20, message = "Should contain from {min} to {max} characters.")
     private String firstName;
 
     @NotNull
     @NotBlank(message = "Last Name is mandatory")
-    @Size(min = 2, max = 20, message = "May contain from {min} to {max} characters.")
+    @Size(min = 2, max = 20, message = "Should contain from {min} to {max} characters.")
     private String lastName;
 
     @NotNull
     @NotBlank(message = "Email is mandatory")
-    @Size(min = 2, max = 20, message = "May contain from {min} to {max} characters.")
+    @Size(min = 2, max = 20, message = "Should contain from {min} to {max} characters.")
     private String email;
 
     @NotNull
     @NotBlank(message = "Password is mandatory")
     private String password;
-
 
     private Set<Role> roles;
 }

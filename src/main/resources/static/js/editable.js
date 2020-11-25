@@ -11,11 +11,31 @@ $(document).ready(function () {
     viewAdminsTable();
     viewUserTable();
     defaultModal();
+    validation();
 });
 
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('saveUserButton', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+
 //Modal Form Validation
-$(function () {
-    $(".userForm").validate({
+function validation() {
+    $(modal).validate({
         rules: {
             firstName: "required",
             lastName: "required",
@@ -33,7 +53,7 @@ $(function () {
             }
         }
     });
-});
+};
 
 function defaultModal() {
     modal.modal({
@@ -201,9 +221,11 @@ async function addUser(modal) {
             $('#defaultModal').modal('show');
         } else if (userResponse.status === 400) {
             userResponse.json().then(response => {
-                response.validationErrors.forEach(function (error) {
-                    modal.find('#' + error.field).addClass('is-invalid');
-                    modal.find('#' + error.field).next('.invalid-feedback').text(error.message);
+                response.errors.forEach(function (error) {
+                    let field = error.split(":")[0];
+                    let message = error.split(":")[1];
+                    modal.find('#' + field).addClass('is-invalid');
+                    modal.find('#' + field).next('.invalid-feedback').text(message);
                 });
             });
         } else {
@@ -413,6 +435,10 @@ async function deleteUser(modal, id) {
         }
     });
 }
+
+const buttonSaveListener = document.getElementById('Save');
+
+
 
 const http = {
     fetch: async function (url, options = {}) {

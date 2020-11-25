@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,10 +54,10 @@ public class AdminRestController {
     @PostMapping("/update")
     public ResponseEntity<UpdateUserResponse> updateUser(@RequestBody UpdateUserRequest user) {
 
-        Set<Role> userRoles = new HashSet<>();
+        List<Integer> roleIds = new ArrayList<>();
+        user.getRoles().forEach(w -> roleIds.add(w.getId()));
 
-        // не делают запрос в цикле
-        user.getRoles().forEach(w -> userRoles.add(roleService.findById(w.getId())));
+        Set<Role> userRoles = new HashSet<>(roleService.findByRoleIdIn(roleIds));
 
         userService.updateUser(
                 new User(user.getId(),
